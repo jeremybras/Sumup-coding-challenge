@@ -48,9 +48,11 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MainActivity" />
 
-            />
+        <activity
+            android:name=".checkout.PaymentActivity"
+            android:label="@string/checkout_activity_title" />
 
     </application>
 

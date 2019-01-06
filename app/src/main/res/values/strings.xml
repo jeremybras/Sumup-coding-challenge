@@ -13,11 +13,21 @@
     <string name="contact_me">You can contact me at</string>
     <string name="made_by">Made by Avjinder</string>
     <string name="done_label">Done</string>
+    <string name="makePayment">Make payment</string>
     <string name="date_reminder_default">Today</string>
     <string name="date_error_check_again">The date you entered is in the past.</string>
     <string name="night_mode">Night Mode</string>
     <string name="night_mode_on_summary">Night mode is on</string>
     <string name="night_mode_off_summary">Night mode is off</string>
+
+    <string name="checkout_activity_title">Checkout</string>
+    <string name="checkout_checkout_button">Checkout</string>
+    <string name="checkout_try_again_button">Try again</string>
+    <string name="checkout_amount">Amount</string>
+    <string name="checkout_mail">Email</string>
+    <string name="checkout_phone_number">Phone number</string>
+    <string name="checkout_progress_payment">Making payment</string>
+    <string name="checkout_retrieving_receipt">Retrieving receipt</string>
 
     <string-array name="snooze_options">
         <item>10 Minutes</item>
