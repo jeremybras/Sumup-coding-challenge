@@ -40,7 +40,6 @@ class PaymentActivity : AppCompatActivity(), PaymentView {
 
         AnalyticsApplication.getComponent(this).plus(PaymentModule()).inject(this)
         view.mutate(this)
-        controller.loadReceipt("test", "test")
 
         checkoutButton.setOnClickListener {
             val amount = amountEditText.text.toString()
@@ -69,6 +68,10 @@ class PaymentActivity : AppCompatActivity(), PaymentView {
                 errorLabel.text = data.extras?.getString(SumUpAPI.Response.MESSAGE)
             }
         }
+    }
+
+    override fun displayError() {
+        Toast.makeText(this, "ERROR", Toast.LENGTH_LONG).show()
     }
 
     override fun displayReceipt(receiptViewModel: ReceiptViewModel) {

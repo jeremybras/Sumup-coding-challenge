@@ -1,8 +1,12 @@
 package com.example.avjindersinghsekhon.minimaltodo.checkout
 
+import android.content.res.Resources
 import com.example.avjindersinghsekhon.minimaltodo.checkout.repository.PaymentRepository
 import com.example.avjindersinghsekhon.minimaltodo.checkout.repository.PaymentRepositoryImpl
 import com.example.avjindersinghsekhon.minimaltodo.checkout.repository.ReceiptService
+import com.example.avjindersinghsekhon.minimaltodo.common.DecimalFormatter
+import com.example.avjindersinghsekhon.minimaltodo.common.FeatureScope
+import com.example.avjindersinghsekhon.minimaltodo.common.MainThreadExecutor
 import com.nicolasmouchel.executordecorator.ImmutableExecutorDecorator
 import com.nicolasmouchel.executordecorator.MutableDecorator
 import com.nicolasmouchel.executordecorator.MutableExecutorDecorator
@@ -31,14 +35,19 @@ class PaymentModule {
     )
 
     @Provides
-    fun providePresenter(view: PaymentView): PaymentPresenter = PaymentPresenterImpl(view)
+    fun providePresenter(
+        view: PaymentView,
+        resources: Resources
+    ): PaymentPresenter =
+        PaymentPresenterImpl(view, resources, DecimalFormatter())
 
     @MutableExecutorDecorator
     @Provides
     fun provideView(decorator: MutableDecorator<PaymentView>): PaymentView = decorator.asDecorated()
 
+    @FeatureScope
     @Provides
-    fun provideViewDecorator(executor: Executor): MutableDecorator<PaymentView> =
+    fun provideViewDecorator(executor: MainThreadExecutor): MutableDecorator<PaymentView> =
         PaymentViewDecorator(executor)
 
 }

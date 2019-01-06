@@ -12,9 +12,6 @@ data class TransactionData(
     val receipt_no: String,
     val transaction_code: String,
     val amount: String,
-    val vat_amount: String,
-    val tip_amount: String,
     val status: String,
-    val payment_type: String,
-    val customer_email: String
+    val payment_type: String
 )

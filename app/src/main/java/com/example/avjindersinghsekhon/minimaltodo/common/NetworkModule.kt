@@ -2,6 +2,7 @@ package com.example.avjindersinghsekhon.minimaltodo.common
 
 import android.content.Context
 import com.example.avjindersinghsekhon.minimaltodo.BuildConfig
+import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -18,6 +19,7 @@ class NetworkModule {
     fun provideOkhttpClient(
         context: Context
     ): OkHttpClient.Builder = OkHttpClient().newBuilder()
+        .addInterceptor(ChuckInterceptor(context))
 
     @Provides
     fun provideRetrofitMoschi(

@@ -28,6 +28,7 @@
     <string name="checkout_phone_number">Phone number</string>
     <string name="checkout_progress_payment">Making payment</string>
     <string name="checkout_retrieving_receipt">Retrieving receipt</string>
+    <string name="checkout_display_amount">%s €</string>
 
     <string-array name="snooze_options">
         <item>10 Minutes</item>
