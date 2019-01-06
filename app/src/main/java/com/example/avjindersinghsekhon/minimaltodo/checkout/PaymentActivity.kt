@@ -76,9 +76,8 @@ class PaymentActivity : AppCompatActivity(), PaymentView {
 
     override fun displayReceipt(receiptViewModel: ReceiptViewModel) {
         screenTypeViewFlipper.displayedChild = DISPLAY_PAYMENT_RECEIPT
-        Toast.makeText(
-            this, "RECEIPT NUMBER ${receiptViewModel.receiptNumber}", Toast.LENGTH_LONG
-        ).show()
+        receiptNumberValue.text = receiptViewModel.receiptNumber
+        amountPaidValue.text = receiptViewModel.amount
     }
 
     private fun makePayment(amount: String, mail: String, phoneNumber: String) {

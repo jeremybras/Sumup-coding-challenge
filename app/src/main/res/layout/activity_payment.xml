@@ -187,7 +187,6 @@
                 android:id="@+id/receiptNumberValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="16 €"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toRightOf="@id/receiptNumberLabel" />
@@ -206,7 +205,6 @@
                 android:id="@+id/amountPaidValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="16 €"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toRightOf="@id/amountPaidLabel"
