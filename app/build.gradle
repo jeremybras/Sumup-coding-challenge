@@ -16,6 +16,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
+        buildConfigField 'String', 'API_BASE_URL', '"https://receipts-ng.sumup.com/v0.1/"'
         buildConfigField 'String', 'AFFILIATE_KEY', '"9b251585-3089-4abd-9524-682106e3042c"'
 
         applicationId "com.example.avjindersinghsekhon.minimaltodo"
@@ -64,8 +65,8 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.16"
 
     // Executor Decorator
-    compileOnly 'com.nicolasmouchel:executordecorator-annotations:2.0'
-    annotationProcessor 'com.nicolasmouchel:executordecorator-compiler:2.0'
+    implementation 'com.nicolasmouchel:executordecorator-annotations:2.1'
+    kapt 'com.nicolasmouchel:executordecorator-compiler:2.1'
 
     // Network
     implementation "com.squareup.retrofit2:retrofit:2.4.0"

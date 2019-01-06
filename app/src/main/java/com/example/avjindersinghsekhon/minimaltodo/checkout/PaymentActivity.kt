@@ -4,15 +4,19 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
+import com.example.avjindersinghsekhon.minimaltodo.AnalyticsApplication
 import com.example.avjindersinghsekhon.minimaltodo.R
+import com.nicolasmouchel.executordecorator.MutableDecorator
 import com.sumup.merchant.Models.TransactionInfo
 import com.sumup.merchant.api.SumUpAPI
 import com.sumup.merchant.api.SumUpPayment
 import kotlinx.android.synthetic.main.activity_payment.*
 import java.math.BigDecimal
+import javax.inject.Inject
 
 
-class PaymentActivity : AppCompatActivity() {
+class PaymentActivity : AppCompatActivity(), PaymentView {
 
     companion object {
         private const val CHECKOUT_REQUEST_CODE = 156
@@ -25,11 +29,18 @@ class PaymentActivity : AppCompatActivity() {
         fun newIntent(context: Context): Intent = Intent(context, PaymentActivity::class.java)
     }
 
+    @Inject lateinit var controller: PaymentController
+    @Inject lateinit var view: MutableDecorator<PaymentView>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        AnalyticsApplication.getComponent(this).plus(PaymentModule()).inject(this)
+        view.mutate(this)
+        controller.loadReceipt("test", "test")
 
         checkoutButton.setOnClickListener {
             val amount = amountEditText.text.toString()
@@ -46,7 +57,13 @@ class PaymentActivity : AppCompatActivity() {
         if (requestCode == CHECKOUT_REQUEST_CODE && data != null) {
             if (resultCode == 1) {
                 setProgressLabel(R.string.checkout_retrieving_receipt)
-                (data.extras?.getParcelable(SumUpAPI.Response.TX_INFO) as TransactionInfo).transactionCode
+                val transactionCode = (data.extras?.getParcelable(
+                    SumUpAPI.Response.TX_INFO
+                ) as TransactionInfo).transactionCode
+                val merchantCode = SumUpAPI.getCurrentMerchant()?.merchantCode
+                if (merchantCode != null && transactionCode != null) {
+                    controller.loadReceipt(merchantCode, transactionCode)
+                }
             } else {
                 screenTypeViewFlipper.displayedChild = DISPLAY_PAYMENT_ERROR
                 errorLabel.text = data.extras?.getString(SumUpAPI.Response.MESSAGE)
@@ -54,8 +71,11 @@ class PaymentActivity : AppCompatActivity() {
         }
     }
 
-    private fun displayReceipt() {
+    override fun displayReceipt(receiptViewModel: ReceiptViewModel) {
         screenTypeViewFlipper.displayedChild = DISPLAY_PAYMENT_RECEIPT
+        Toast.makeText(
+            this, "RECEIPT NUMBER ${receiptViewModel.receiptNumber}", Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun makePayment(amount: String, mail: String, phoneNumber: String) {

@@ -1,8 +1,12 @@
 package com.example.avjindersinghsekhon.minimaltodo;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.PackageManager;
 
+import com.example.avjindersinghsekhon.minimaltodo.common.DaggerMainComponent;
+import com.example.avjindersinghsekhon.minimaltodo.common.MainComponent;
+import com.example.avjindersinghsekhon.minimaltodo.common.MainModule;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -14,11 +18,18 @@ public class AnalyticsApplication extends Application {
 
     private Tracker mTracker;
     private static final boolean IS_ENABLED = true;
+    private MainComponent mainComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mainComponent = DaggerMainComponent.builder().mainModule(new MainModule(this)).build();
         SumUpState.init(this);
+    }
+
+    public static MainComponent getComponent(Context context) {
+        AnalyticsApplication application = (AnalyticsApplication) context.getApplicationContext();
+        return application.mainComponent;
     }
 
     synchronized private Tracker getDefaultTracker() {
