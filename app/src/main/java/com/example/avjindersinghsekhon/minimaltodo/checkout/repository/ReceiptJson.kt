@@ -12,6 +12,5 @@ data class TransactionData(
     val receipt_no: String,
     val transaction_code: String,
     val amount: String,
-    val status: String,
-    val payment_type: String
+    val status: String
 )

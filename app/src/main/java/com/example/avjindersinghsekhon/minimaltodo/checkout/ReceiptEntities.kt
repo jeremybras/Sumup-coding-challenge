@@ -6,6 +6,5 @@ data class Receipt(
     val receiptNumber: String,
     val transactionCode: String,
     val amount: BigDecimal,
-    val status: String,
-    val paymentType: String
+    val status: String
 )

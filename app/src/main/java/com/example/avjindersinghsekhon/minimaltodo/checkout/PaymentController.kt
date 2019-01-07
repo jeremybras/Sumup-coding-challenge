@@ -1,6 +1,5 @@
 package com.example.avjindersinghsekhon.minimaltodo.checkout
 
-
 interface PaymentController {
     fun loadReceipt(merchantCode: String, transactionCode: String)
 }

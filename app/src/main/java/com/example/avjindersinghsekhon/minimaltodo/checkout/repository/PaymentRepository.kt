@@ -4,7 +4,6 @@ import com.example.avjindersinghsekhon.minimaltodo.checkout.Receipt
 import java.io.IOException
 import java.math.BigDecimal
 
-
 interface PaymentRepository {
     fun loadReceipt(merchantCode: String, transactionCode: String): Receipt
 }
@@ -27,8 +26,7 @@ class PaymentRepositoryImpl(private val service: ReceiptService) : PaymentReposi
                         receiptNumber = receipt_no,
                         transactionCode = transaction_code,
                         amount = BigDecimal(amount),
-                        status = status,
-                        paymentType = payment_type
+                        status = status
                     )
                 }
             } ?: throw RepositoryException()
