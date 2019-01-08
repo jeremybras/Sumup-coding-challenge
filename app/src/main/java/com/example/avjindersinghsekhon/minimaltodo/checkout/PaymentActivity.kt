@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.example.avjindersinghsekhon.minimaltodo.AnalyticsApplication
 import com.example.avjindersinghsekhon.minimaltodo.R
 import com.nicolasmouchel.executordecorator.MutableDecorator
@@ -64,14 +63,16 @@ class PaymentActivity : AppCompatActivity(), PaymentView {
                     controller.loadReceipt(merchantCode, transactionCode)
                 }
             } else {
-                screenTypeViewFlipper.displayedChild = DISPLAY_PAYMENT_ERROR
-                errorLabel.text = data.extras?.getString(SumUpAPI.Response.MESSAGE)
+                displayError(data.extras?.getString(SumUpAPI.Response.MESSAGE) ?: getString(
+                    R.string.checkout_error
+                ))
             }
         }
     }
 
-    override fun displayError() {
-        Toast.makeText(this, "ERROR", Toast.LENGTH_LONG).show()
+    override fun displayError(errorMessage: String) {
+        screenTypeViewFlipper.displayedChild = DISPLAY_PAYMENT_ERROR
+        errorLabel.text = errorMessage
     }
 
     override fun displayReceipt(receiptViewModel: ReceiptViewModel) {

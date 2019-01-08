@@ -13,7 +13,7 @@ interface PaymentPresenter {
 
 interface PaymentView {
     fun displayReceipt(receiptViewModel: ReceiptViewModel)
-    fun displayError()
+    fun displayError(errorMessage: String)
 }
 
 class PaymentPresenterImpl(
@@ -35,11 +35,11 @@ class PaymentPresenterImpl(
     }
 
     override fun presentError() {
-        view.displayError()
+        view.displayError(resources.getString(R.string.checkout_repository_error))
     }
 
     override fun presentTransactionFailed() {
-        view.displayError()
+        view.displayError(resources.getString(R.string.checkout_error))
     }
 }
 

@@ -1,0 +1,8 @@
+{
+  "transaction_data": {
+    "transaction_code": "transactionCode123",
+    "amount": "123.90",
+    "status": "SUCCESSFUL",
+    "receipt_no": "132456789"
+  }
+}

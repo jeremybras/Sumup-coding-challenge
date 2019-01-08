@@ -314,6 +314,8 @@ public class MainActivity extends AppCompatActivity {
             SumUpLogin sumupLogin = SumUpLogin.builder(BuildConfig.AFFILIATE_KEY)
                                               .build();
             SumUpAPI.openLoginActivity(MainActivity.this, sumupLogin, REQUEST_SUMUP_LOGIN);
+        } else {
+            startActivity(PaymentActivity.newIntent(this));
         }
     }
 

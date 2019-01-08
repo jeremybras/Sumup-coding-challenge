@@ -5,6 +5,7 @@ import java.io.IOException
 import java.math.BigDecimal
 
 interface PaymentRepository {
+    @Throws(RepositoryException::class)
     fun loadReceipt(merchantCode: String, transactionCode: String): Receipt
 }
 
@@ -20,7 +21,7 @@ class PaymentRepositoryImpl(private val service: ReceiptService) : PaymentReposi
             service.getReceipt(transactionCode, merchantCode).execute().body()?.let { receipt ->
                 with(receipt.transaction_data) {
                     if (status != STATUS_SUCCESSFUL) {
-                        throw TransactionUnsuccessful()
+                        throw TransactionUnsuccessfulException()
                     }
                     return Receipt(
                         receiptNumber = receipt_no,

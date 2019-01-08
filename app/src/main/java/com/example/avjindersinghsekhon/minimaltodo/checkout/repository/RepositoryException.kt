@@ -5,4 +5,4 @@ open class RepositoryException(
     override val cause: Throwable? = null
 ) : Exception(message, cause)
 
-class TransactionUnsuccessful: RepositoryException()
+class TransactionUnsuccessfulException: RepositoryException()

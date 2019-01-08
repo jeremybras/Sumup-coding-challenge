@@ -2,7 +2,7 @@ package com.example.avjindersinghsekhon.minimaltodo.checkout
 
 import com.example.avjindersinghsekhon.minimaltodo.checkout.repository.PaymentRepository
 import com.example.avjindersinghsekhon.minimaltodo.checkout.repository.RepositoryException
-import com.example.avjindersinghsekhon.minimaltodo.checkout.repository.TransactionUnsuccessful
+import com.example.avjindersinghsekhon.minimaltodo.checkout.repository.TransactionUnsuccessfulException
 
 class PaymentInteractor(
     private val presenter: PaymentPresenter,
@@ -12,7 +12,7 @@ class PaymentInteractor(
         try {
             val receipt = repository.loadReceipt(merchantCode, transactionCode)
             presenter.presentReceipt(receipt)
-        } catch (e: TransactionUnsuccessful) {
+        } catch (e: TransactionUnsuccessfulException) {
             presenter.presentTransactionFailed()
         } catch (e: RepositoryException) {
             presenter.presentError()

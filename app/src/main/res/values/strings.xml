@@ -29,6 +29,8 @@
     <string name="checkout_progress_payment">Making payment</string>
     <string name="checkout_retrieving_receipt">Retrieving receipt</string>
     <string name="checkout_display_amount">%s €</string>
+    <string name="checkout_repository_error">An error occurred while fetching the receipt data</string>
+    <string name="checkout_error">An error occurred while paying</string>
 
     <string-array name="snooze_options">
         <item>10 Minutes</item>

@@ -49,4 +49,26 @@ class PaymentPresenterImplTest {
             )
         )
     }
+
+    @Test
+    fun whenPresentError_shouldDisplayRepositoryErrorMessage() {
+        // Given
+        given(resources.getString(R.string.checkout_repository_error)).willReturn("errorMessage")
+        // When
+        presenter.presentError()
+
+        // Then
+        then(view).should(only()).displayError("errorMessage")
+    }
+
+    @Test
+    fun whenPresentTransactionFailed_shouldDisplayErrorMessage() {
+        // Given
+        given(resources.getString(R.string.checkout_error)).willReturn("errorMessage")
+        // When
+        presenter.presentTransactionFailed()
+
+        // Then
+        then(view).should(only()).displayError("errorMessage")
+    }
 }
