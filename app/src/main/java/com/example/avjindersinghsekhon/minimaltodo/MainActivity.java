@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void hide() {
 
-                CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) mAddToDoItemFAB
+                ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) mAddToDoItemFAB
                     .getLayoutParams();
                 int fabMargin = lp.bottomMargin;
                 mAddToDoItemFAB.animate().translationY(mAddToDoItemFAB.getHeight() + fabMargin)
